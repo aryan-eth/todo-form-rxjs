@@ -1,0 +1,38 @@
+<mat-dialog-content>
+  <div *ngIf="index===1">
+    <h2>Rule strings, Make a change to see the alert</h2>
+    <div *ngIf="todosForUsers1$ | async as todos">
+      <div *ngFor="let todo of todos;let i=index;">
+        <form
+          #userForm="ngForm"
+          [formGroup]="tempGroup"
+          (ngSubmit)="onSubmit($event, i)  "
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>User list ID: 112233</mat-label>
+            <textarea
+              matInput
+              name="ruleString"
+              [value]="todo.title"
+              [matTextareaAutosize]="true"
+              id="enabled"
+              [formControlName]="getName(i)"
+            >
+            </textarea>
+          </mat-form-field>
+          <button type="submit" mat-raised-button style="float: right">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<button mat-raised-button style="float: right" (click)="check()">
+  Done
+</button>
+
+<!-- Copyright 2019 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
